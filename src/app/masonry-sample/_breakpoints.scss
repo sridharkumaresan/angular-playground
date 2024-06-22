@@ -1,0 +1,24 @@
+// _breakpoints.scss
+$breakpoint-large: 1920px;
+$breakpoint-medium: 1440px;
+$breakpoint-small: 1024px;
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == large {
+    @media (min-width: #{$breakpoint-large}) {
+      @content;
+    }
+  } @else if $breakpoint == medium {
+    @media (min-width: #{$breakpoint-medium}) and (max-width: #{$breakpoint-large - 1}) {
+      @content;
+    }
+  } @else if $breakpoint == small {
+    @media (min-width: #{$breakpoint-small}) and (max-width: #{$breakpoint-medium - 1}) {
+      @content;
+    }
+  } @else if $breakpoint == xsmall {
+    @media (max-width: #{$breakpoint-small - 1}) {
+      @content;
+    }
+  }
+}

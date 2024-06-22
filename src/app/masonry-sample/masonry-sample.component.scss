@@ -1,0 +1,67 @@
+@import 'breakpoints';
+
+:host {
+  display: block;
+}
+
+// Variables
+$card-min-width: 350px;
+$card-gap: 16px;
+$base-row-height: 10px;
+
+// Styles
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax($card-min-width, 1fr));
+  grid-auto-rows: $base-row-height; // base height of grid rows
+  gap: $card-gap;
+  padding: $card-gap;
+
+  // Masonry Layout - Spanning Rows
+  .card {
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    min-height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    grid-row-end: span 20; // Default span for all cards
+
+    &:hover {
+      transform: scale(1.05);
+      transition: transform 0.3s;
+    }
+
+    &.height-1 { grid-row-end: span 20; background-color: aqua;} // 200px
+    &.height-2 { grid-row-end: span 25; background-color: aquamarine;} // 250px
+    &.height-3 { grid-row-end: span 30; background-color: chocolate;} // 300px
+    &.height-4 { grid-row-end: span 35; background-color: darkorchid} // 350px
+    &.height-5 { grid-row-end: span 40; background-color: fuchsia} // 400px
+  }
+
+  @include respond-to(large) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include respond-to(medium) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include respond-to(small) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to(xsmall) {
+    grid-template-columns: 1fr;
+  }
+}
